@@ -25,7 +25,7 @@ SECRET_KEY = '7#k)ut7!9+npsjq0kt+g^c9cm-g)oy28*nk^&0lvopi&7w1^4h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # 或者使用 mysql.connector.django
-        'NAME': 're_music',
+        'NAME': 'remote_music',
         'USER': 'root',
         'PASSWORD': '4968',
         'HOST':'localhost',
@@ -124,3 +124,25 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#普通文件
+STATICFILES_DIRS=[
+    os.path.join(BASE_DIR,'static')
+]
+
+#上传文件目录
+MDEIA_ROOT=os.path.join(BASE_DIR,'static/upfile/')
+
+
+#富文本
+TINYMCE_DEFAULT_CONFIG = {
+    'theme':'advanced',
+    'width':600,
+    'height':400,
+}
+
+#celery
+# import djcelery
+# djcelery.setup_loader()#初始化
+# BROKER_URL='redis://sunck@127.0.0.1:6379/0'
+# CELERY_IMPORTS=('myApp.task')
